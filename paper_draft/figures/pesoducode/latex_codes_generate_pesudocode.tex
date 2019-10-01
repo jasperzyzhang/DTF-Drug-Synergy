@@ -1,0 +1,149 @@
+
+\documentclass[12pt]{article}
+%\documentclass{article}
+\usepackage{amssymb,amsmath,bm}
+\usepackage{booktabs}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{lastpage}
+\usepackage{algorithmicx,algorithm}
+\usepackage{algpseudocode}
+%\usepackage[linesnumbered,lined,boxed,commentsnumbered]{algorithm2e}
+\lhead{Team \# 3211}
+\rhead{Page \thepage{} of \pageref{LastPage}}
+\cfoot{}
+%\renewcommand{\headrulewidth}{0pt}
+\begin{document}
+
+
+
+% MathType!Translator!2!1!LaTeX.tdl!LaTeX 2.09 and later!
+% MathType!MTEF!2!1!+-
+% faaahqart1ev3aaaKnaaaaWenf2ys9wBH5garuavP1wzZbItLDhis9
+% wBH5garmWu51MyVXgaruWqVvNCPvMCaebbnrfifHhDYfgasaacH8sr
+% ps0lbbf9q8WrFfeuY-ribbf9v8qqaqFr0xc9pk0xbba9q8WqFfea0-
+% yr0RYxir-Jbba9q8aq0-yq-He9q8qqQ8frFve9Fve9Ff0dc9Gqpi0d
+% meaabaqaciGacaGaaeqabaWaaeaaeaaakeaadaacdaqaaaGaayPgWi
+
+\algrenewtext{EndFunction}{\algorithmicend}
+\algrenewtext{EndFor}{\algorithmicend}
+\algnewcommand\algorithmicto{\textbf{to}}
+\algrenewtext{EndProcedure}{\algorithmicend}
+
+
+%\algrenewcommand{\algorithmiccomment}[1]{\hskip 0em $\triangleright$ #1}
+%\algrenewtext{For}[3]{\algorithmicfor\ #1 $\gets$ #2 \algorithmicto\ #3 \algorithmicdo}
+%\algrenewcommand\algorithmic<EndFunction>{\textbf{am\¡¯\i g}}
+\begin{algorithm}
+\caption{DTF}
+\begin{algorithmic}[1]
+\State \textbf{Input:} tensor with missing values $\mathbf{\mathcal{X}}$, positions of missing values $\mathbf{\mathcal{P}}$,
+ \State number of component $R$;
+\State \textbf{Output:} predicted probability of missing pairs $\mathbf{y}^{\prime}$ ;
+\Statex
+% \State \textbf{Other Notations:} feature vectors $\mathbf{a,b,c}$, parameters of DNN $\left\{\mathbf{W}_{d}\right\}$,\\$\left\{\mathbf{b}_{d}\right\}$,
+%  predicted probability of synergy status being 1 on particular 
+% test sampel $y^{\prime}$,
+%  factor matrices $\left[\kern-0.15em\left[ {\textbf{A,B,C}} \right]\kern-0.15em\right]$ 
+% to serve as features;
+
+
+
+% \Function{CPWOPT}{$\mathcal{X}$,$P$,$R$}: 
+% %\Statex
+% \State \textbf{Input:} tensor with missing values $\mathcal{X}$, positions of missing values $P$,
+% \State number of component$R$;
+% \State \textbf{Output:} factor matrices $\left[\kern-0.15em\left[ {\textbf{A,B,C}} 
+%  \right]\kern-0.15em\right]$;
+% %\Statex
+% \State \textbf{return} $\left[\kern-0.15em\left[ {\textbf{A,B,C}} 
+%  \right]\kern-0.15em\right]$; \Comment{The detailed implemention is omitted here}
+% \EndFunction
+\Function{PREDICT}{$\mathbf{a}^{f}$,$\mathbf{b}^{f}$,$\mathbf{c}^{f}$,$\left\{\mathbf{W}_{d}\right\}$,
+$\left\{\mathbf{b}_{d}\right\}$}:
+%\Comment Feature vectors $\mathbf{a}^{f},\mathbf{b}^{f},\mathbf{a}^{f}$
+% \State \textbf{Input:} feature vectors $\mathbf{a,b,c}$, parameters of DNN $\left\{\mathbf{W}_{d}\right\}$,$\left\{\mathbf{b}_{d}\right\}$;
+% \State \textbf{Output:} predicted synergy status of the test sample;
+\State $y^{\prime}$ $\gets$ forwardprop($\mathbf{a}^{f}$,$\mathbf{b}^{f}$,$\mathbf{a}^{f}$,$\left\{\mathbf{W}_{d}\right\}$,
+$\left\{\mathbf{b}_{d}\right\}$);
+\State \textbf{return} $y^{\prime}$ 
+\Comment Feature vectors $\mathbf{a}^{f}$,$\mathbf{b}^{f}$,$\mathbf{c}^{f}$
+\EndFunction
+
+\Statex
+\Function{TRAIN}{$\left[\kern-0.15em\left[ {\textbf{A,B,C}}
+ \right]\kern-0.15em\right]$}:
+ % \State \textbf{Input:} factor matrices $\left[\kern-0.15em\left[ {\textbf{A,B,C}} 
+ % \right]\kern-0.15em\right]$ serving as features, parameters of 
+ % \State DNN $\left\{\mathbf{W}_{d}\right\}$,
+ % $\left\{\mathbf{b}_{d}\right\}$;
+ % \State \textbf{Output:} parameters of trained DNN $\left\{\mathbf{W}_{d}\right\}$,
+ % $\left\{\mathbf{b}_{d}\right\}$;
+
+
+\State $\left\{\mathbf{W}_{d}\right\} \gets$ init$\_$glorot$\_$uniform($\left\{\mathbf{W}_{d}\right\}$);
+% \Comment Use Glorot uniform
+\State $\left\{\mathbf{b}_{d}\right\} \gets \left\{\mathbf{0}\right\};$ 
+% \qquad \qquad \qquad \qquad \qquad \qquad \qquad \qquad initializer
+\For{$epoch$ $\gets$ 1  \algorithmicto\ $maxepoch$}
+\State $\left\{\frac{\partial F}{\partial \mathbf{W}_{d}}\right\} \gets {0}$,
+$\left\{\frac{\partial F}{\partial \mathbf{b}_{d}}\right\} \gets {0}$;
+
+\For{\textbf{i} $\gets$ $mini\_batch\_indices$}
+\State $\mathbf{y}^{\prime(i)}$ $\gets$  forwardprop($\mathbf{a}^{(i)}$,
+$\mathbf{b}^{(i)}$,$\mathbf{c}^{(i)}$,$\left\{\mathbf{W}_{d}\right\}$,
+$\left\{\mathbf{b}_{d}\right\}$)
+
+\State $\left\{\frac{\partial F}{\partial \mathbf{W}_{d}}\right\},
+\left\{\frac{\partial F}{\partial \mathbf{b}_{d}}\right\} \gets
+\left\{\frac{\partial F}{\partial \mathbf{W}_{d}}\right\},
+\left\{\frac{\partial F}{\partial \mathbf{b}_{d}}\right\}$  + backprop($\mathbf{a}^{(i)}$,
+\State $\mathbf{b}^{(i)},\mathbf{c}^{(i)},\mathbf{y}^{(i)},\left\{\frac{\partial F}{\partial \mathbf{W}_{d}}\right\},
+ \left\{\frac{\partial F}{\partial \mathbf{b}_{d}}\right\}$);
+%  + backprop($\mathbf{a}^{(i)},
+% \mathbf{b}^{(i)},\mathbf{c}^{(i)},\mathbf{y}^{(i)},\left\{\frac{\partial F}{\partial \mathbf{W}_{d}}\right\},
+% \left\{\frac{\partial F}{\partial \mathbf{b}_{d}}\right\}$ )
+\EndFor
+\State $\left\{\mathbf{W}_{d}\right\}$,$\left\{\mathbf{b}_{d}\right\}$
+ $\gets$ RMSProp($\left\{\mathbf{W}_{d}\right\}$,$\left\{\mathbf{b}_{d}\right\}$,$\left\{\frac{\partial F}{\partial \mathbf{W}_{d}}\right\},\left\{\frac{\partial F}{\partial \mathbf{b}_{d}}\right\}$);
+\EndFor
+\State \textbf{return} $\left\{\mathbf{W}_{d}\right\}$,$\left\{\mathbf{b}_{d}\right\}$;
+\Comment The parameters of deep neural network
+%$\left\{\mathbf{W}_{d}\right\} \gets$ init_glorot_uniform($\left\{\mathbf{W}_{d}\right\}$)
+\EndFunction
+\Statex
+
+\Procedure{MODEL}{}:
+%{$\mathcal{X}$,$P$,$R$}:\Comment{Implement the whole model}
+% \State \textbf{Input:} tensor with missing values $\mathcal{X}$, positions of missing values $P$,
+% \State number of component$R$;
+% \State \textbf{Output:} total loss on the test set
+\State $\left[\kern-0.15em\left[ {\textbf{A,B,C}} 
+ \right]\kern-0.15em\right]$ $\gets$ CP-WOPT(${\mathcal{X}}$,$\mathbf{\mathcal{P}}$,$R$);
+ \Comment{Tensor factorization}
+\State $\left\{\mathbf{W}_{d}\right\}$,$\left\{\mathbf{b}_{d}\right\}$ $\gets$ TRAIN($\left[\kern-0.15em\left[ {\textbf{A,B,C}}
+ \right]\kern-0.15em\right]$,$\left\{\mathbf{W}_{d}\right\}$,$\left\{\mathbf{b}_{d}\right\}$);
+ %\State set $Loss$ to zero;
+ \State $\mathbf{y}^{\prime}$ $\gets$ [ ]; 
+ \Comment Vector to collect the predicting result
+ \For{\textbf{i} $\gets$ $test\_set\_indices$}
+\State $y^{\prime(i)}$ $\gets$ TEST($\mathbf{a}^{(i)}, \mathbf{b}^{(i)}, \mathbf{c}^{(i)},\left\{\mathbf{W}_{d}\right\},\left\{\mathbf{b}_{d}\right\}$);
+\State $\mathbf{y}^{\prime} \gets$  $\mathbf{y}^{\prime}$.append($y^{\prime(i)}$);
+%\State 
+%$Loss$ $\gets$ $Loss$ + loss($\mathbf{y}^{\prime(i)}$,$\mathbf{y}^{(i)}$)
+ \EndFor
+ \State \textbf{return} $\mathbf{y}^{\prime}$
+ %\textbf{return} $Loss$
+%\Comment{to serve as features}
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+
+
+
+
+
+
+
+\end{document}
