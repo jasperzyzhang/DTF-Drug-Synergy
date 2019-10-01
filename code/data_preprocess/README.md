@@ -1,14 +1,18 @@
-Input: 
+
+## Data preprocess
+
+
+### Input: 
 
 the raw data of drug synergy
 
 
-Output: 
+### Output: 
 
 The drug and cell line names corresponding to the number
 
 
-Description:
+### Description:
 
 tensor_generate.R is used to preprocess raw data.The input is the 
 only data set I used, the drug synergy data. What this code mainly

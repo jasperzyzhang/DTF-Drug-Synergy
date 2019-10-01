@@ -1,4 +1,4 @@
-Input: 
+### Input: 
 
 test pairs of 100 experiments
 
@@ -9,7 +9,7 @@ tensor_without_na/
 
 
 
-Output:
+### Output:
 
 drug_a.csv, drug_b.csv and cell_line.csv are features to be used next by 
 python and the results of CP-WOPT.
@@ -25,7 +25,7 @@ test_labels in python. So the situation of CP-WOPT is different from other three
 when handling in python. You can notice that in my python codes.
 
 
-Description:
+### Description:
 The read_data is used to read the result of R, the preprocessed tensor. 
 Note to modify the path of the data whiling trying to run the code. 
 The final_exp_100 incoporates read_data, which is to implement CP-WOPT 

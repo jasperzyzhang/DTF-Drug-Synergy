@@ -1,10 +1,12 @@
+### Description:
+
 To load the model
 
 run the following codes:
-
+```
 from keras.models import load_model
 curr_model = load_model(folder_name + 'final_model.h5')
-
+```
 note to modify the folder_name on your own PC.
 
 
